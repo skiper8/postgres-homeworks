@@ -14,7 +14,6 @@ with psycopg2.connect(host="localhost",
                 cur.executemany("INSERT INTO customers VALUES (%s, %s, %s)",
                                 [(row['customer_id'], row['company_name'], row['contact_name'])])
 
-    with conn.cursor() as cur:
         with open('north_data/orders_data.csv', 'r', encoding='UTF-8') as file:
             reader = csv.DictReader(file)
             for row in reader:
@@ -22,7 +21,6 @@ with psycopg2.connect(host="localhost",
                                 [(row['order_id'], row['customer_id'], row['employee_id'], row['order_date'],
                                   row['ship_city'])])
 
-    with conn.cursor() as cur:
         with open('north_data/employees_data.csv', 'r', encoding='UTF-8') as file:
             reader = csv.DictReader(file)
             for row in reader:
