@@ -21,7 +21,7 @@ ORDER BY products.units_in_stock DESC;
 
 -- 3. Список компаний заказчиков (company_name из табл customers), не сделавших ни одного заказа
 SELECT company_name FROM customers
-WHERE NOT EXISTS (SELECT customer_id FROM orders WHERE orders.customer_id = customers.customer_id);
+WHERE customers.customer_id NOT IN(SELECT customer_id FROM orders);
 
 -- 4. уникальные названия продуктов, которых заказано ровно 10 единиц (количество заказанных единиц см в колонке quantity табл order_details)
 -- Этот запрос написать именно с использованием подзапроса.
